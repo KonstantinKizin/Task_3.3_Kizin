@@ -1,4 +1,11 @@
 package by.tc.jwd.task3_3.kizin.controller.command;
 
-public class DOMParseCommand {
+import by.tc.jwd.task3_3.kizin.entity.Employee;
+import java.util.List;
+
+public class DOMParseCommand implements Command {
+
+    public List<Employee> execute() {
+        return null;
+    }
 }

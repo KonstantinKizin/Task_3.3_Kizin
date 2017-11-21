@@ -7,7 +7,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,8 +23,6 @@ public class CommandDAOImpl implements CommandDAO {
     private final String COMMAND_NAME_TAG = "command-name";
     private final String COMMAND_CLASS_NAME_TAG = "command-class";
     private final String XML_SETTING_FILE_NAME = "Command.cfg.xml";
-
-
 
     public CommandDAOImpl(){
 
