@@ -1,7 +1,9 @@
 package by.tc.jwd.task3_3.kizin.service.factory;
 
 import by.tc.jwd.task3_3.kizin.service.CommandService;
+import by.tc.jwd.task3_3.kizin.service.ParserService;
 import by.tc.jwd.task3_3.kizin.service.impl.CommandServiceImpl;
+import by.tc.jwd.task3_3.kizin.service.impl.SaxParserServiceImpl;
 
 public class ServiceFactory {
 
@@ -9,12 +11,18 @@ public class ServiceFactory {
 
     private CommandService commandService = new  CommandServiceImpl();
 
-    public CommandService getCommandService() {
-        return commandService;
-    }
+    private ParserService saxParserService = new SaxParserServiceImpl();
 
     private ServiceFactory(){
 
+    }
+
+    public ParserService getSaxParserService() {
+        return saxParserService;
+    }
+
+    public CommandService getCommandService() {
+        return commandService;
     }
 
     public static ServiceFactory getInstance(){

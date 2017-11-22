@@ -1,7 +1,10 @@
 package by.tc.jwd.task3_3.kizin.controller;
 
 import by.tc.jwd.task3_3.kizin.controller.command.Command;
+import by.tc.jwd.task3_3.kizin.controller.command.CommandProvider;
+import by.tc.jwd.task3_3.kizin.controller.exception.ControllerException;
 import by.tc.jwd.task3_3.kizin.service.CommandService;
+import by.tc.jwd.task3_3.kizin.service.exception.ServiceException;
 import by.tc.jwd.task3_3.kizin.service.factory.ServiceFactory;
 
 import javax.servlet.ServletException;
@@ -14,6 +17,8 @@ import java.util.Map;
 public class FrontServlet extends HttpServlet {
     private final ServiceFactory factory = ServiceFactory.getInstance();
     private final CommandService commandService = factory.getCommandService();
+    private CommandProvider producer = new CommandProvider();
+
 
 
     @Override
@@ -30,17 +35,15 @@ public class FrontServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
+        try {
+            Map<String , Command> commandMap = commandService.getCommandMap();
+            producer.getCommandMap().putAll(commandMap);
 
-        Map<String , Command> commandMap = commandService.getCommandMap();
-
+        } catch (ServiceException e) {
+            throw new RuntimeException(new ControllerException(e));
+        }
 
 
     }
-
-
-
-
-
-
 
 }
