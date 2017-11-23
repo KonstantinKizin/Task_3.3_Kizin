@@ -13,7 +13,7 @@ public class test {
 
 
         ServiceFactory factory = ServiceFactory.getInstance();
-        ParserService service = factory.getSaxParserService();
+        ParserService service = factory.getDomParserService();
 
 
         for(Employee employee : service.buildEmployeeList()){
