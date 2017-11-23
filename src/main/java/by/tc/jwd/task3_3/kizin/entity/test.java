@@ -6,6 +6,7 @@ import by.tc.jwd.task3_3.kizin.service.factory.ServiceFactory;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import static by.tc.jwd.task3_3.kizin.service.impl.PropertyManager.getProperty;
 
 public class test {
 
@@ -19,6 +20,8 @@ public class test {
         for(Employee employee : service.buildEmployeeList()){
             System.out.println(employee);
         }
+
+
 
 
     }

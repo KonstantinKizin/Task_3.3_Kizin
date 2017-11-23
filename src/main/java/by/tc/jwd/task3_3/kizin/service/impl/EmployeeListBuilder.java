@@ -9,19 +9,17 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import static by.tc.jwd.task3_3.kizin.service.impl.PropertyManager.getProperty;
 public class EmployeeListBuilder {
 
     private Document document;
     private Employee employee;
     private List<Employee> employeeList = new ArrayList<>();
     private Project project;
-    private List<Project> projectList = new ArrayList<>();
     private final String EMPLOYEE_TAG = "employee";
     private final String LAST_NAME_TAG = "lastname";
     private final String FIRST_NAME_TAG = "firstname";
     private final String HIRE_DATE_TAG = "hiredate";
-    private final String PROJECTS_NAME_TAG = "projects";
     private final String PROJECT_NAME_TAG = "project";
     private final String PRODUCT_NAME_TAG = "product";
     private final String ID_NAME_TAG = "id";
@@ -31,75 +29,72 @@ public class EmployeeListBuilder {
     public EmployeeListBuilder(Document document){
         this.document = document;
     }
-
-
     public List<Employee> getEmployeeList(){
 
-        NodeList root = this.document.getChildNodes();
-
-        for(int i = 0; i < root.getLength();i++){
+        NodeList node1 = document.getElementsByTagName(EMPLOYEE_TAG);
+        for(int i = 0; i < node1.getLength(); i ++ ){
+            Node node = node1.item(i);
             employee = new Employee();
-            buildEmployee(root.item(i),employee);
+            buildEmployee(node);
             employeeList.add(employee);
             employee = null;
         }
-
         return employeeList;
     }
 
 
-    private void buildEmployee(Node root, Employee employee){
-        if(employee == null){
-            employee = new Employee();
-        }
-
+    private Employee buildEmployee(Node root) {
         NodeList nodeList = root.getChildNodes();
 
         for(int i = 0; i < nodeList.getLength();i++){
-
             Node node = nodeList.item(i);
-
             if(node.getNodeType() == Node.ELEMENT_NODE){
-
                 Element element = (Element) node;
-
-                if(element.getTagName().equalsIgnoreCase(FIRST_NAME_TAG)){
-                    this.employee.setFirstName(element.getTextContent());
-                }else if(element.getTagName().equalsIgnoreCase(LAST_NAME_TAG)){
-                    this.employee.setSecondName(element.getTextContent());
+                String textContent = element.getTextContent();
+                if(element.getTagName().equalsIgnoreCase(LAST_NAME_TAG)){
+                    employee.setSecondName(textContent);
+                }else if(element.getTagName().equalsIgnoreCase(FIRST_NAME_TAG)){
+                    employee.setFirstName(textContent);
+                }else if(element.getTagName().equalsIgnoreCase(HIRE_DATE_TAG)){
+                    employee.setHireDate(textContent);
                 }else if(element.getTagName().equalsIgnoreCase(PROJECT_NAME_TAG)){
-                    Project project = new Project();
-                    this.buildProject(nodeList.item(i),project );
+                    project = new Project();
+                    buildProject(node);
                     employee.getProjects().add(project);
                     project = null;
                 }
             }
-            buildEmployee(nodeList.item(i),employee);
+
+            buildEmployee(node);
         }
+        return employee;
     }
 
-    private void buildProject(Node root , Project project) {
+
+    private Project buildProject(Node root ) {
 
         NodeList nodeList = root.getChildNodes();
         for(int i = 0; i < nodeList.getLength();i++){
-
             Node node = nodeList.item(i);
             if(node.getNodeType() == Node.ELEMENT_NODE){
-                Element element = (Element) nodeList.item(i);
+                Element element = (Element)node;
+                String elementContent = element.getTextContent();
                 if(element.getTagName().equalsIgnoreCase(PRODUCT_NAME_TAG)){
-                    project.setProductName(element.getTextContent());
-                }else if(element.getTagName().equalsIgnoreCase(ID_NAME_TAG)){
-                    project.setId(Integer.parseInt(element.getTextContent()));
+                    project.setProductName(elementContent);
                 }else if(element.getTagName().equalsIgnoreCase(PRICE_NAME_TAG)){
-                    project.setPrice(element.getTextContent());
+                    project.setPrice(elementContent);
+                }else if(element.getTagName().equalsIgnoreCase(ID_NAME_TAG)){
+                    project.setId(Integer.parseInt(elementContent));
                 }
             }
-
-            buildProject(nodeList.item(i),project);
-
+            buildProject(node);
         }
-
+        return project;
     }
+
+
+
+
 
 
 }
