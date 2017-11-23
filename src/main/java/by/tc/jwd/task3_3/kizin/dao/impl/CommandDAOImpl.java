@@ -76,11 +76,8 @@ public class CommandDAOImpl implements CommandDAO {
             Node node = nodeList.item(i);
 
             if(node.getNodeType() == Node.ELEMENT_NODE){
-
                 Element element = (Element)node;
-
                 if(element.getTagName().equalsIgnoreCase(tagName)){
-
                     list.add(element.getTextContent());
                 }
                 buildTextContentList(node.getChildNodes(),tagName,list);

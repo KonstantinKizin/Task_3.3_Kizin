@@ -4,4 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>by.tc.jwd.task3_3.kizin.controller.FrontServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>/frontController</url-pattern>
+  </servlet-mapping>
+
+
+
 </web-app>
