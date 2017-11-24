@@ -1,32 +1,22 @@
-package by.tc.jwd.task3_3.kizin.service.impl;
+package by.tc.jwd.task3_3.kizin.service.entityBuilder;
 
 import by.tc.jwd.task3_3.kizin.entity.Employee;
 import by.tc.jwd.task3_3.kizin.entity.Project;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import static by.tc.jwd.task3_3.kizin.service.impl.PropertyLoaderImpl.getConstant;
+import static by.tc.jwd.task3_3.kizin.service.impl.ParserConstants.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeHandler extends DefaultHandler {
 
-
     private Employee employee;
     private List<Employee> employeeList = new ArrayList<>();
     private Project project;
-    private List<Project> projectList = new ArrayList<>();
-    private final String EMPLOYEE_TAG = "employee";
-    private final String LAST_NAME_TAG = "lastname";
-    private final String FIRST_NAME_TAG = "firstname";
-    private final String HIRE_DATE_TAG = "hiredate";
-    private final String PROJECTS_NAME_TAG = "projects";
-    private final String PROJECT_NAME_TAG = "project";
-    private final String PRODUCT_NAME_TAG = "product";
-    private final String ID_NAME_TAG = "id";
-    private final String PRICE_NAME_TAG = "price";
     private String currentTag;
-
 
 
     public List<Employee> getEmployeeList() {
@@ -40,9 +30,9 @@ public class EmployeeHandler extends DefaultHandler {
             currentTag = new String();
         }
         currentTag = qName;
-        if(qName.equalsIgnoreCase(EMPLOYEE_TAG)){
+        if(qName.equalsIgnoreCase(getConstant(Tag.EMPLOYEE_TAG.name()))){
             employee = new Employee();
-        }else if(qName.equalsIgnoreCase(PROJECT_NAME_TAG)){
+        }else if(qName.equalsIgnoreCase(getConstant(Tag.PROJECT_NAME_TAG.name()))){
             project = new Project();
         }
     }
@@ -50,16 +40,12 @@ public class EmployeeHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri,String localName, String qName) throws SAXException{
-
-        if(qName.equalsIgnoreCase(EMPLOYEE_TAG)){
+        if(qName.equalsIgnoreCase(getConstant(Tag.EMPLOYEE_TAG.name()))){
             employeeList.add(employee);
             employee = null;
-        }else if(qName.equalsIgnoreCase(PROJECT_NAME_TAG)){
-            projectList.add(project);
+        }else if(qName.equalsIgnoreCase(getConstant(Tag.PROJECT_NAME_TAG.name()))){
+            employee.getProjects().add(project);
             project = null;
-        }else if(qName.equalsIgnoreCase(PROJECTS_NAME_TAG)){
-            employee.getProjects().addAll(projectList);
-            projectList.clear();
         }
     }
 
@@ -68,17 +54,17 @@ public class EmployeeHandler extends DefaultHandler {
     public void characters(char ch[], int start, int length) throws SAXException{
         String content = new String(ch,start,length).trim();
         if(!content.isEmpty()){
-            if(currentTag.equalsIgnoreCase(LAST_NAME_TAG)){
+            if(currentTag.equalsIgnoreCase(getConstant(Tag.LAST_NAME_TAG.name()))){
                 employee.setSecondName(content);
-            }else if(currentTag.equalsIgnoreCase(FIRST_NAME_TAG)){
+            }else if(currentTag.equalsIgnoreCase(getConstant(Tag.FIRST_NAME_TAG.name()))){
                 employee.setFirstName(content);
-            }else if(currentTag.equalsIgnoreCase(HIRE_DATE_TAG)){
+            }else if(currentTag.equalsIgnoreCase(getConstant(Tag.HIRE_DATE_TAG.name()))){
                 employee.setHireDate(content);
-            }else if(currentTag.equalsIgnoreCase(PRODUCT_NAME_TAG)){
+            }else if(currentTag.equalsIgnoreCase(getConstant(Tag.PRODUCT_NAME_TAG.name()))){
                 project.setProductName(content);
-            }else if(currentTag.equalsIgnoreCase(ID_NAME_TAG)){
+            }else if(currentTag.equalsIgnoreCase(getConstant(Tag.ID_NAME_TAG.name()))){
                  project.setId(Integer.parseInt(content));
-            }else if(currentTag.equalsIgnoreCase(PRICE_NAME_TAG)){
+            }else if(currentTag.equalsIgnoreCase(getConstant(Tag.PRICE_NAME_TAG.name()))){
                 project.setPrice(content);
             }
         }

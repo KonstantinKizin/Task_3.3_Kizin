@@ -3,7 +3,7 @@ package by.tc.jwd.task3_3.kizin.dao.impl;
 import by.tc.jwd.task3_3.kizin.dao.XmlDAO;
 import by.tc.jwd.task3_3.kizin.dao.exception.DAOException;
 import by.tc.jwd.task3_3.kizin.entity.Employee;
-import by.tc.jwd.task3_3.kizin.service.impl.EmployeeListBuilder;
+import by.tc.jwd.task3_3.kizin.service.entityBuilder.EmployeeListBuilder;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 

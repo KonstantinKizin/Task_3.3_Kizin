@@ -12,29 +12,8 @@ public class test {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, ServiceException {
 
 
-//        ServiceFactory factory = ServiceFactory.getInstance();
-//        ParserService staxParser = factory.getStaxParserService();
-//        ParserService domParser = factory.getDomParserService();
-//        ParserService saxParser = factory.getSaxParserService();
-//
-//
-//
-//        System.out.println("SAX_PARSER");
-//
-//        for(Employee employee : saxParser.buildEmployeeList()){
-//            System.out.println(employee);
-//        }
-//
-//        System.out.println("DOM_PARSER");
-//        for(Employee employee : domParser.buildEmployeeList()){
-//            System.out.println(employee);
-//        }
-//
-//
-//        System.out.println("STAX_PARSER :");
-//        for(Employee employee : staxParser.buildEmployeeList()){
-//            System.out.println(employee);
-//        }
+
+
 
 
 

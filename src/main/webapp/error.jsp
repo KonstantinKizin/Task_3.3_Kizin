@@ -10,7 +10,7 @@
 <head>
     <title></title>
 
-    <h1>Something have gone wrong , sorry :( </h1>
+    <h1>Something has gone wrong , sorry :( </h1>
 </head>
 <body>
 

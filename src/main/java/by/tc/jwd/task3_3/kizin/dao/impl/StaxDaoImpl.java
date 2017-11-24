@@ -3,7 +3,7 @@ package by.tc.jwd.task3_3.kizin.dao.impl;
 import by.tc.jwd.task3_3.kizin.dao.XmlDAO;
 import by.tc.jwd.task3_3.kizin.dao.exception.DAOException;
 import by.tc.jwd.task3_3.kizin.entity.Employee;
-import by.tc.jwd.task3_3.kizin.service.impl.EmployeeStaxBuilder;
+import by.tc.jwd.task3_3.kizin.service.entityBuilder.EmployeeStaxBuilder;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
