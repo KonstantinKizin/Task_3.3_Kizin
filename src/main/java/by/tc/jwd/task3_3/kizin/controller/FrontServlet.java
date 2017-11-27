@@ -42,8 +42,7 @@ public class FrontServlet extends HttpServlet {
             Command command = producer.getCommandMap().get(commandName);
             employeeList = command.execute();
             request.setAttribute(ATTR_NAME,employeeList);
-            request.setAttribute("currentPage ",1);
-            request.setAttribute("noOfPages",5);
+           
             RequestDispatcher rd = getServletContext().getRequestDispatcher(EMPLOYEES_PAGE);
             rd.forward(request,response);
             employeeList.clear();
