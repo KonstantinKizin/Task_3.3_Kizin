@@ -1,4 +1,4 @@
-package by.tc.jwd.task3_3.kizin.service.impl;
+package by.tc.jwd.task3_3.kizin.service.entityBuilder;
 
 public class ParserConstants {
 

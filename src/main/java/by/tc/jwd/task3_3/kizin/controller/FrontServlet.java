@@ -1,5 +1,4 @@
 package by.tc.jwd.task3_3.kizin.controller;
-
 import by.tc.jwd.task3_3.kizin.controller.command.Command;
 import by.tc.jwd.task3_3.kizin.controller.command.CommandProvider;
 import by.tc.jwd.task3_3.kizin.controller.exception.ControllerException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +23,9 @@ public class FrontServlet extends HttpServlet {
     private final String EMPLOYEES_PAGE = "/WEB-INF/jsp/employees.jsp";
     private final String ERROR_PAGE = "/error.jsp";
     private final String ATTR_NAME = "employeeList";
-    private List<Employee> employeeList = new ArrayList<>();
+    private List<Employee> employeeList;
+    private String page;
+    private final int  RECORDS_PER_PAGE = 3;
 
 
     @Override
@@ -40,11 +40,13 @@ public class FrontServlet extends HttpServlet {
         try {
             String commandName = request.getParameter(HIDDEN_PARAMETER);
             Command command = producer.getCommandMap().get(commandName);
-            employeeList.addAll(command.execute());
+            employeeList = command.execute();
             request.setAttribute(ATTR_NAME,employeeList);
-            employeeList.clear();
-            RequestDispatcher rd = request.getRequestDispatcher(EMPLOYEES_PAGE);
+            request.setAttribute("currentPage ",1);
+            request.setAttribute("noOfPages",5);
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(EMPLOYEES_PAGE);
             rd.forward(request,response);
+            employeeList.clear();
         } catch (ServiceException e) {
             response.sendRedirect(ERROR_PAGE);
         }
@@ -61,6 +63,11 @@ public class FrontServlet extends HttpServlet {
         }
 
 
+    }
+
+
+    private List<Employee> buildEmployeePageList(){
+        return null;
     }
 
 }

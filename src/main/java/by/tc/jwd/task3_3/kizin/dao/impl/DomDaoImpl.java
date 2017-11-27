@@ -3,7 +3,7 @@ package by.tc.jwd.task3_3.kizin.dao.impl;
 import by.tc.jwd.task3_3.kizin.dao.XmlDAO;
 import by.tc.jwd.task3_3.kizin.dao.exception.DAOException;
 import by.tc.jwd.task3_3.kizin.entity.Employee;
-import by.tc.jwd.task3_3.kizin.service.entityBuilder.EmployeeListBuilder;
+import by.tc.jwd.task3_3.kizin.service.entityBuilder.EmployeeDomBuilder;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class DomDaoImpl implements XmlDAO {
 
     private DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-    private EmployeeListBuilder employeeBuilder;
+    private EmployeeDomBuilder employeeBuilder;
 
     public List<Employee> getEmployeeList() throws DAOException {
 
@@ -26,7 +26,7 @@ public class DomDaoImpl implements XmlDAO {
 
             Document document = builder.parse(getPath("task.xml"));
 
-            employeeBuilder = new EmployeeListBuilder(document);
+            employeeBuilder = new EmployeeDomBuilder(document);
 
             return employeeBuilder.getEmployeeList();
 

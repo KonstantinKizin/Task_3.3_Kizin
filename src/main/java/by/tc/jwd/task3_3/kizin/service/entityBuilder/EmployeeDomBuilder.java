@@ -10,8 +10,8 @@ import org.w3c.dom.NodeList;
 import java.util.ArrayList;
 import java.util.List;
 import static by.tc.jwd.task3_3.kizin.service.impl.PropertyLoaderImpl.getConstant;
-import static by.tc.jwd.task3_3.kizin.service.impl.ParserConstants.Tag;
-public class EmployeeListBuilder {
+import static by.tc.jwd.task3_3.kizin.service.entityBuilder.ParserConstants.Tag;
+public class EmployeeDomBuilder {
 
     private Document document;
     private Employee employee;
@@ -19,7 +19,7 @@ public class EmployeeListBuilder {
     private Project project;
 
 
-    public EmployeeListBuilder(Document document){
+    public EmployeeDomBuilder(Document document){
         this.document = document;
     }
     public List<Employee> getEmployeeList(){

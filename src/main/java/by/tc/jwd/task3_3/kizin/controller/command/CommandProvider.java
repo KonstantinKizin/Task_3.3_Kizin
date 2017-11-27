@@ -10,8 +10,6 @@ public class CommandProvider {
 
    }
 
-
-
     public Map<String, Command> getCommandMap() {
         return commandMap;
     }

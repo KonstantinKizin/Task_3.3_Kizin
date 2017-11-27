@@ -6,7 +6,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import static by.tc.jwd.task3_3.kizin.service.impl.PropertyLoaderImpl.getConstant;
-import static by.tc.jwd.task3_3.kizin.service.impl.ParserConstants.Tag;
+import static by.tc.jwd.task3_3.kizin.service.entityBuilder.ParserConstants.Tag;
 
 import java.util.ArrayList;
 import java.util.List;

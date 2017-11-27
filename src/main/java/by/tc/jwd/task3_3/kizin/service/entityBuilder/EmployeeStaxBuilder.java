@@ -13,7 +13,7 @@ import javax.xml.stream.events.XMLEvent;
 import java.util.ArrayList;
 import java.util.List;
 import static by.tc.jwd.task3_3.kizin.service.impl.PropertyLoaderImpl.getConstant;
-import static by.tc.jwd.task3_3.kizin.service.impl.ParserConstants.Tag;
+import static by.tc.jwd.task3_3.kizin.service.entityBuilder.ParserConstants.Tag;
 
 public class EmployeeStaxBuilder {
 
