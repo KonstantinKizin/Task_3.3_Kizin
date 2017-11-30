@@ -1,5 +1,6 @@
 <?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
 <commands>
+
     <command>
         <command-name>sax</command-name>
         <command-class>by.tc.jwd.task3_3.kizin.controller.command.SAXParseCommand</command-class>
@@ -15,8 +16,4 @@
         <command-class>by.tc.jwd.task3_3.kizin.controller.command.StAXParseCommand</command-class>
     </command>
 
-    <command>
-        <command-name>pagination</command-name>
-        <command-class>by.tc.jwd.task3_3.kizin.controller.command.PaginationCommand</command-class>
-    </command>
 </commands>
