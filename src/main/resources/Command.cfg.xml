@@ -14,4 +14,9 @@
         <command-name>stax</command-name>
         <command-class>by.tc.jwd.task3_3.kizin.controller.command.StAXParseCommand</command-class>
     </command>
+
+    <command>
+        <command-name>pagination</command-name>
+        <command-class>by.tc.jwd.task3_3.kizin.controller.command.PaginationCommand</command-class>
+    </command>
 </commands>

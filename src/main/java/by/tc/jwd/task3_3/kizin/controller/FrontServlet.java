@@ -21,11 +21,8 @@ public class FrontServlet extends HttpServlet {
     private CommandProvider producer = new CommandProvider();
     private final String HIDDEN_PARAMETER = "command";
     private final String EMPLOYEES_PAGE = "/WEB-INF/jsp/employees.jsp";
-    private final String ERROR_PAGE = "/error.jsp";
     private final String ATTR_NAME = "employeeList";
-    private List<Employee> employeeList;
-    private String page;
-    private final int  RECORDS_PER_PAGE = 3;
+    private final String ERROR_PAGE = "/error.jsp";
 
 
     @Override
@@ -40,9 +37,8 @@ public class FrontServlet extends HttpServlet {
         try {
             String commandName = request.getParameter(HIDDEN_PARAMETER);
             Command command = producer.getCommandMap().get(commandName);
-            employeeList = command.execute();
+            List<Employee> employeeList = command.execute();
             request.setAttribute(ATTR_NAME,employeeList);
-           
             RequestDispatcher rd = getServletContext().getRequestDispatcher(EMPLOYEES_PAGE);
             rd.forward(request,response);
             employeeList.clear();
@@ -60,13 +56,6 @@ public class FrontServlet extends HttpServlet {
         } catch (ServiceException e) {
             throw new RuntimeException(new ControllerException(e));
         }
-
-
-    }
-
-
-    private List<Employee> buildEmployeePageList(){
-        return null;
     }
 
 }
