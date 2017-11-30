@@ -1,6 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="by.tc.jwd.task3_3.kizin.entity.Employee" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -37,8 +35,6 @@
     <td><a href="/frontController?command=sax&page=${currentPage - 1}">Previous</a></td>
 </c:if>
 
-<%--For displaying Page numbers.
-The when condition does not display a link for the current page--%>
 <table border="1" cellpadding="5" cellspacing="5">
     <tr>
         <c:forEach begin="1" end="${noOfPages}" var="i">
@@ -54,7 +50,6 @@ The when condition does not display a link for the current page--%>
     </tr>
 </table>
 
-<%--For displaying Next link --%>
 <c:if test="${currentPage lt noOfPages}">
     <td><a href="/frontController?command=sax&page=${currentPage + 1}">Next</a></td>
 </c:if>

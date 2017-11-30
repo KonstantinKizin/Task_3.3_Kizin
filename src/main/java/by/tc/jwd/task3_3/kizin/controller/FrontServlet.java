@@ -24,6 +24,15 @@ public class FrontServlet extends HttpServlet {
     private final String EMPLOYEES_PAGE = "/WEB-INF/jsp/employees.jsp";
     private final String LIST_ATTR_NAME = "employeeList";
     private final String ERROR_PAGE = "/error.jsp";
+    private final int RECORDS_PER_PAGE = 3;
+    private final int PAGE_DIF = 1;
+    private final double DOUBLE_ONE = 1.0;
+    private final String NO_OF_PAGE_ATTR_NAME = "noOfPages";
+    private final String PAGE_PARAMETER_NAME = "page";
+    private final String CURRENT_PAGE_ATTR_NAME = "currentPage";
+
+
+
     private static int noOfRecords;
 
     @Override
@@ -40,16 +49,15 @@ public class FrontServlet extends HttpServlet {
             Command command = producer.getCommandMap().get(commandName);
             List<Employee> employeeList = command.execute();
             int page = 1;
-            int recordsPerPage = 3;
-            noOfRecords = employeeList.size() - 3;
-            if(request.getParameter("page") != null){
-                page = Integer.parseInt(request.getParameter("page"));
+            noOfRecords = employeeList.size() - RECORDS_PER_PAGE;
+            if(request.getParameter(PAGE_PARAMETER_NAME) != null){
+                page = Integer.parseInt(request.getParameter(PAGE_PARAMETER_NAME));
             }
-            List<Employee> responseList = getPartOfEmployee(employeeList,(page-1)*recordsPerPage,recordsPerPage);
-            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            List<Employee> responseList = getPartOfEmployee(employeeList,(page-PAGE_DIF)*RECORDS_PER_PAGE,RECORDS_PER_PAGE);
+            int noOfPages = (int) Math.ceil(noOfRecords * DOUBLE_ONE / RECORDS_PER_PAGE);
             request.setAttribute(LIST_ATTR_NAME,responseList);
-            request.setAttribute("noOfPages", noOfPages);
-            request.setAttribute("currentPage", page);
+            request.setAttribute(NO_OF_PAGE_ATTR_NAME, noOfPages);
+            request.setAttribute(CURRENT_PAGE_ATTR_NAME, page);
             RequestDispatcher rd = getServletContext().getRequestDispatcher(EMPLOYEES_PAGE);
             rd.forward(request,response);
             employeeList.clear();
@@ -75,9 +83,7 @@ public class FrontServlet extends HttpServlet {
     public List<Employee> getPartOfEmployee(List<Employee> list , int start , int count){
 
         List<Employee> employeePart = new ArrayList<>();
-
         int index = 0;
-
         for(int i = start; i < (start + count); i++  ){
             employeePart.add(list.get(i));
             index++;
