@@ -1,8 +1,8 @@
 package by.tc.jwd.task3_3.kizin.controller;
 import by.tc.jwd.task3_3.kizin.controller.command.Command;
 import by.tc.jwd.task3_3.kizin.controller.command.CommandProvider;
-import by.tc.jwd.task3_3.kizin.controller.exception.ControllerException;
-import by.tc.jwd.task3_3.kizin.entity.Employee;
+import by.tc.jwd.task3_3.kizin.controller.exception.ControllerInitializationException;
+import by.tc.jwd.task3_3.kizin.entity.model.Employee;
 import by.tc.jwd.task3_3.kizin.service.CommandService;
 import by.tc.jwd.task3_3.kizin.service.exception.ServiceException;
 import by.tc.jwd.task3_3.kizin.service.factory.ServiceFactory;
@@ -30,9 +30,6 @@ public class FrontServlet extends HttpServlet {
     private final String NO_OF_PAGE_ATTR_NAME = "noOfPages";
     private final String PAGE_PARAMETER_NAME = "page";
     private final String CURRENT_PAGE_ATTR_NAME = "currentPage";
-
-
-
     private static int noOfRecords;
 
     @Override
@@ -73,7 +70,7 @@ public class FrontServlet extends HttpServlet {
             Map<String , Command> commandMap = commandService.getCommandMap();
             producer.getCommandMap().putAll(commandMap);
         } catch (ServiceException e) {
-            throw new RuntimeException(new ControllerException(e));
+            throw new ControllerInitializationException("Exception in Servlet init method",e);
         }
     }
 

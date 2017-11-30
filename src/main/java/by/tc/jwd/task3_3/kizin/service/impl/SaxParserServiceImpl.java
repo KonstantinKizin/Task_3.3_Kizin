@@ -3,7 +3,7 @@ package by.tc.jwd.task3_3.kizin.service.impl;
 import by.tc.jwd.task3_3.kizin.dao.XmlDAO;
 import by.tc.jwd.task3_3.kizin.dao.exception.DAOException;
 import by.tc.jwd.task3_3.kizin.dao.factory.DAOFactory;
-import by.tc.jwd.task3_3.kizin.entity.Employee;
+import by.tc.jwd.task3_3.kizin.entity.model.Employee;
 import by.tc.jwd.task3_3.kizin.service.ParserService;
 import by.tc.jwd.task3_3.kizin.service.exception.ServiceException;
 

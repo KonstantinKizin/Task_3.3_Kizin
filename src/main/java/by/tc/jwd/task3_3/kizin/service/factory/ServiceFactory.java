@@ -7,7 +7,7 @@ import by.tc.jwd.task3_3.kizin.service.impl.DomParserServiceImpl;
 import by.tc.jwd.task3_3.kizin.service.impl.SaxParserServiceImpl;
 import by.tc.jwd.task3_3.kizin.service.impl.StaxParserServiceImpl;
 
-public class ServiceFactory {
+public final class ServiceFactory {
 
     private static final ServiceFactory instance = new ServiceFactory();
 
@@ -38,7 +38,6 @@ public class ServiceFactory {
     public ParserService getStaxParserService() {
         return staxParserService;
     }
-
 
     public static ServiceFactory getInstance(){
         return instance;

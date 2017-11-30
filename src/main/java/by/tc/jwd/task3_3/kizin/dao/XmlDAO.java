@@ -1,7 +1,7 @@
 package by.tc.jwd.task3_3.kizin.dao;
 
 import by.tc.jwd.task3_3.kizin.dao.exception.DAOException;
-import by.tc.jwd.task3_3.kizin.entity.Employee;
+import by.tc.jwd.task3_3.kizin.entity.model.Employee;
 
 import java.util.List;
 

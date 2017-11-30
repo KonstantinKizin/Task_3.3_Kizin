@@ -2,7 +2,7 @@ package by.tc.jwd.task3_3.kizin.dao.impl;
 
 import by.tc.jwd.task3_3.kizin.dao.XmlDAO;
 import by.tc.jwd.task3_3.kizin.dao.exception.DAOException;
-import by.tc.jwd.task3_3.kizin.entity.Employee;
+import by.tc.jwd.task3_3.kizin.entity.model.Employee;
 import by.tc.jwd.task3_3.kizin.service.entityBuilder.EmployeeDomBuilder;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -16,22 +16,22 @@ import java.util.List;
 
 public class DomDaoImpl implements XmlDAO {
 
-    private DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-    private EmployeeDomBuilder employeeBuilder;
+    private final DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+    private final String XML_FILE_NAME = "task.xml";
 
     public List<Employee> getEmployeeList() throws DAOException {
 
         try {
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
 
-            Document document = builder.parse(getPath("task.xml"));
+            Document document = builder.parse(getPath(XML_FILE_NAME));
 
-            employeeBuilder = new EmployeeDomBuilder(document);
+            EmployeeDomBuilder employeeBuilder = new EmployeeDomBuilder(document);
 
             return employeeBuilder.getEmployeeList();
 
         } catch (ParserConfigurationException | SAXException | IOException e ) {
-            throw new DAOException(e);
+            throw new DAOException("Exception from DomDao in getEmployeeList method",e);
         }
 
     }

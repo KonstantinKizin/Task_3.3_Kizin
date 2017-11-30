@@ -1,7 +1,7 @@
 package by.tc.jwd.task3_3.kizin.service.entityBuilder;
 
-import by.tc.jwd.task3_3.kizin.entity.Employee;
-import by.tc.jwd.task3_3.kizin.entity.Project;
+import by.tc.jwd.task3_3.kizin.entity.model.Employee;
+import by.tc.jwd.task3_3.kizin.entity.model.Project;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamConstants;

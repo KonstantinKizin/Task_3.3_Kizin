@@ -1,4 +1,4 @@
-package by.tc.jwd.task3_3.kizin.entity;
+package by.tc.jwd.task3_3.kizin.entity.model;
 
 import java.util.ArrayList;
 import java.util.List;
